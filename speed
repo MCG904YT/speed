@@ -1,0 +1,30 @@
+	local walkspeedplayer = game:GetService("Players").LocalPlayer
+	local walkspeedmouse = walkspeedplayer:GetMouse()
+
+	local walkspeedenabled = false
+
+	function q_walkspeed(key)
+		if (key == "q") then
+			if walkspeedenabled == false then
+				_G.WS = 200;
+				local Humanoid = game:GetService("Players").LocalPlayer.Character.Humanoid;
+				Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
+					Humanoid.WalkSpeed = _G.WS;
+				end)
+				Humanoid.WalkSpeed = _G.WS;
+
+				walkspeedenabled = true
+			elseif walkspeedenabled == true then
+				_G.WS = 30;
+				local Humanoid = game:GetService("Players").LocalPlayer.Character.Humanoid;
+				Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
+					Humanoid.WalkSpeed = _G.WS;
+				end)
+				Humanoid.WalkSpeed = _G.WS;
+
+				walkspeedenabled = false
+			end
+		end
+	end
+
+	walkspeedmouse.KeyDown:connect(q_walkspeed)
